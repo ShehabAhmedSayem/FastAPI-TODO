@@ -1,9 +1,9 @@
-from typing import List
+from typing import List, Optional
 
 from pydantic import BaseModel
 from pydantic import EmailStr
 
-from app_todo.serializers.todo_serializers import TodoSerializer
+from app_todo.todo.serializers import TodoSerializer
 
 
 class UserBase(BaseModel):
@@ -21,3 +21,12 @@ class UserCreateSerializer(UserSerializer):
 
 class UserDetailSerializer(UserSerializer):
     todos: List[TodoSerializer]
+
+
+class TokenSerializer(BaseModel):
+    access_token: str
+    token_type: str
+
+
+class TokenDataSerializer(BaseModel):
+    email: Optional[str] = None
